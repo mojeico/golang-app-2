@@ -11,7 +11,7 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "8081"
 		log.Printf("Defaulting to port %s", port)
 	}
 
@@ -26,7 +26,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	_, err := fmt.Fprint(w, "Hello, Golang-app-2 ! add argocd")
+
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusOK)
 	}
 }

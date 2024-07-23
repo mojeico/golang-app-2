@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    linkerd.io/inject: enabled
+  labels:
+    app: golang-app-2
+  name: golang-app-2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: golang-app-2
+  template:
+
+    metadata:
+      labels:
+        app: golang-app-2
+      annotations:
+        linkerd.io/inject: enabled
+
+    spec:
+      containers:
+        - image: golang-app-2:version1
+          name: golang-app-2
+          ports:
+            - containerPort: 8081
+          imagePullPolicy: Never # FOR K8S in DOCKER DESKTOP
+
+
+
